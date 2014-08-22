@@ -1,0 +1,14 @@
+Connecting to Bridged network:
+- 	The host machine needs to connect to a network device that can give
+	you an IP address via DHCP, such as a router or switch
+-	DHCP is not a permanent address, eventually, you will have to renew it
+-	Make the IP adress permanent -> save the IP address in /etc/network/interfaces
+-	Make a network card bind the IP address premamently -> edit the file and change the content to the following:
+	
+	auto eth0
+	iface eth0 inet static
+	address 10.0.2.15
+	netmask 255.255.255.0
+	network 10.0.2.0
+	broadcast 10.0.2.255
+	gateway 10.0.2.2
