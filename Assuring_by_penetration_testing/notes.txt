@@ -12,3 +12,18 @@ Connecting to Bridged network:
 	network 10.0.2.0
 	broadcast 10.0.2.255
 	gateway 10.0.2.2
+	
+UPDATING LINUX FROM REPOSITORIES:
+	Update Linux with these commands -> dkpg, apt, aptitude
+	Search for a package name in a repository -> apt-cache search <package_name>
+	Display package info -> apt-cache show <package_name>
+	Install the package -> apt-get install <package_name>
+	Installing from source code -> Usually works like this: ./configure -> make -> make installh
+	
+	
+	Nessus Vulnerability Scanner:
+	Start the program -> /etc/init.d/nessusd start
+	
+	cisco_crack -> ./cisco_crack -h -> displayes how to user it
+	It cracks cisco7 passwords
+	
