@@ -1,0 +1,46 @@
+USING ENVIRONMENT VARIABLES
+	- It is possible to send shellcode to a bin file
+	- To view it, use the following command: hexdump -C <file.bin>
+	- To finally create the exploit:
+		Concatenate the NOP sled with the shellcode
+		Ex: export SHELLCODE=$(perl -e 'print "0x90"x<offset>')$(cat <shellcode.bin>)
+	- Remember, the goal is to find a return address to overwrite with the NOP sled
+		so that we can run our shellcode instead. 
+	- NOTE: Environment variables are located near the bottom of the stack!!
+			We also know that main() is located near the bottom of the stack.
+			We can view the stack's registers with i r esp since main() is the
+			where the stack frame is first located.
+	- 	When viewing the stack, take a nice guess by looking at the shellcode's
+		memory address. You will be able to notice where that memory address lands on the NOP sled.
+	-	Once the return address is located, you can use the injected shell code to
+		overwrite the return address.
+	-	When executing the program with the injected code, make sure to overflow the buffer with the memory
+		address containing the NOP sled connecting to the shell code with wiggle room!
+	-	NOTE: 	You can still overwrite the return address with the NOP sled which is concatenated 
+				to the shell code
+				
+	getenv() -> Accepts the name of an environment variable as a name and returns its
+				memory address.
+	
+	-	We can use this function to find an accurate memory address containing the shell code.
+		However, this only works with a NOP sled.
+	
+	-	In order to predict an exact memory address, one must explore the differences in
+		memory addresses. The length of a program name has an effect on how the environment
+		variables are positioned in the stack.
+		
+	-	Once a pattern has been figured out in how the memory address changes with respect to the
+		size of the program name, an exploit can be written so that the shellcode located in the
+		environment variable can be executed without a NOP sled.
+	
+	-	FOOD FOR THOUGHT:	Do not try to use system() to exploit because it drops permissions.
+							Use execle() instead and set the environment array parameter's first index
+							to the shellcode. This is because the environment argument is an array of
+							NULL terminated environment variable strings. Overwrite it with our shellcode,
+							we can simply just run the shellcode.
+	
+	-	Note that the return address in a linux system will be 0xbffffffa - <sizeof(shellcode)> - <sizeof(program_name)>
+	
+	-	The execle() method for exploiting via environment variables is one of the best
+		ways because it does not require calling any additional processes, does not require any guesswork, nor
+		requires a NOP sled.
