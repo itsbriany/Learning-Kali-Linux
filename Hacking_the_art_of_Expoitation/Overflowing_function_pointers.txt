@@ -1,0 +1,1 @@
+Keep in mind that global variables are stored in the BSS segment.

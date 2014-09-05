@@ -1,3 +1,4 @@
+NOTE: Keep in mind that heap has to do with memory allocation and stacks the reverse way from the stack segment.
 -	When exploiting in the heap, note that Linux checks for modified headers and will notify a crash after debugging.
 -	Perl uses the crypt("password", "salt") function to create encrypted passwords. If you use a different salt with
 	the same password, you will get a different password. Note that the salt will the first characters of the password.
