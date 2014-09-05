@@ -1,0 +1,10 @@
+-	When exploiting in the heap, note that Linux checks for modified headers and will notify a crash after debugging.
+-	Perl uses the crypt("password", "salt") function to create encrypted passwords. If you use a different salt with
+	the same password, you will get a different password. Note that the salt will the first characters of the password.
+-	In order to write to /etc/passwd the string must end with /etc/passwd
+-	A solution is to create symbolic link our /tmp/etc/passwd to /bin/bash so that we can have a valid login shell and
+	finally insert our user login.
+-	IMPORTANT: If you wish to append a login to /etc/passwd you must append the full directory path to your /etc/passwd
+	in the command that will overflow the heap.
+-	Here is an example of a command where the byte size needs to be exactly 104 bytes in order to work.
+	./notetaker $(perl -e 'print "myroot:XXq2wKiyI43A2:0:0:" . "A"x68 .":/root:/tmp/etc/passwd"')
