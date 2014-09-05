@@ -1,0 +1,55 @@
+Connecting to Bridged network:
+- 	The host machine needs to connect to a network device that can give
+	you an IP address via DHCP, such as a router or switch
+-	DHCP is not a permanent address, eventually, you will have to renew it
+-	Make the IP adress permanent -> save the IP address in /etc/network/interfaces
+-	Make a network card bind the IP address premamently -> edit the file and change the content to the following:
+	
+	auto eth0
+	iface eth0 inet static
+	address 10.0.2.15
+	netmask 255.255.255.0
+	network 10.0.2.0
+	broadcast 10.0.2.255
+	gateway 10.0.2.2
+	
+UPDATING LINUX FROM REPOSITORIES:
+	Update Linux with these commands -> dkpg, apt, aptitude
+	Search for a package name in a repository -> apt-cache search <package_name>
+	Display package info -> apt-cache show <package_name>
+	Install the package -> apt-get install <package_name>
+	Installing from source code -> Usually works like this: ./configure -> make -> make installh
+	
+	
+Nessus Vulnerability Scanner:
+Start the program -> /etc/init.d/nessusd start
+
+cisco_crack -> ./cisco_crack -h -> displayes how to user it
+It cracks cisco7 passwords
+
+
+Chapter 2: Penetration Testing Methodology
+
+Pentest: The process that is followed to conduct an in-depth secutiry assessment or auduit
+Methodology: Defines a set of rules, practices, or procedures that are implemented during the pentest
+Penenetration testing methodololy: Defines a roadmap of ideas that can be followed to assess the true security posture of the target
+
+Types of peneteration testing:
+	
+	Black Box:	Jump right into the penetration testing without further awareness of the technology.
+				Apply real world hacking techniques to exploit the system. Prioritze the risks, write up a report.
+	
+	White Box:	The tester is aware of the system infrastructure and underlying technologies. Easier, and costs less thatn black box testing.
+				Takes less effort and takes less exploits due to knowledge about the system.
+	
+	Vulnerability Assessment: 	Process to assess the internal and external securoty controls by identifying threats.
+								It is good to keep track of up to date vulnerabilities in a VULNERABILITY MANAGEMENT SYSTEM.
+	
+	Pentration testing VS Vulnerability Assesment:
+		Pentetsing:		Goes more in deptch than Vulenrability Assessment. Hooks into the processes of EXPLOITATION, PRIVILEDGE ESCALATION and MAINTAINING ACCESS.
+		Vulnerability Assessment:	Provides a broad view of existing flaws in the system without measuring the impact. 
+									Less intrusive and aggressive than pentesting.
+		Which to use? 
+			Pentest when firewalls, instrusion dection systems, file integrity monitoring, ect are in doubt.
+			Vulnerability scan when locating the vulnerabilities.
+			
