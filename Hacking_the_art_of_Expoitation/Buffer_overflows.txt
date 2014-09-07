@@ -39,7 +39,7 @@ USING ENVIRONMENT VARIABLES
 							NULL terminated environment variable strings. Overwrite it with our shellcode,
 							we can simply just run the shellcode.
 	
-	-	Note that the return address in a linux system will be 0xbffffffa - <sizeof(shellcode)> - <sizeof(program_name)>
+	-	Note that the return address(environment variable memory address?) in a linux system will be 0xbffffffa - <sizeof(shellcode)> - <sizeof(program_name)>
 	
 	-	The execle() method for exploiting via environment variables is one of the best
 		ways because it does not require calling any additional processes, does not require any guesswork, nor
